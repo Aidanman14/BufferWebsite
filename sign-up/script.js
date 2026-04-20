@@ -1,5 +1,4 @@
 let projectKey = "BUFFERSTAKEHOLDERINVITE2026-27";
-let password = "";
 let realPassword = "";
 let length = 0
 let lastLength = 0;
@@ -16,27 +15,24 @@ function checkCredentials(email, user, password, key) {
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("pass").addEventListener("input", function () {
-        if (!this.value || this.value === 0) { realPassword = ""; return; }
-        password = this.value;
-        length = password.length - 1;
+        let current = this.value;
+        let length = current.length;
 
         if (length > lastLength) {
-            realPassword += this.value.slice(lastLength);
-            lastLength = length;
+            realPassword += current.slice(lastLength);
         } 
         else if (length < lastLength) {
             realPassword = realPassword.slice(0, length);
-            lastLength = length;
         }
 
-        let censored = "";
+        lastLength = length;
 
         for (let i = 0; i < length; i++) {
             censored = censored + "•";
         }
 
         if (this.value !== censored) {
-                this.value = censored;
+            this.value = censored;
         }
     })
 

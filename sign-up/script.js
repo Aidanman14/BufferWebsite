@@ -1,6 +1,7 @@
 let projectKey = "BUFFERSTAKEHOLDERINVITE2026-27";
 let password = "";
 let realPassword = "";
+let lastLength = 0;
 
 // vatsal's key: 6ac7f00933165014d1db908e1181ffa75bc7298e8143aa61062b0a08ac6366c0
 // daniel's key: bd3dae5fb91f88a4f0978222dfd58f59a124257cb081486387cbae9df11fb879
@@ -13,11 +14,20 @@ function checkCredentials(email, user, password, key) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("pass").onkeyup = function() {
+    document.getElementById("pass").addEventListener("input", function () {
         if (!this.value || this.value === 0) { realPassword = ""; return; }
         password = this.value;
         let length = password.length;
-        realPassword = realPassword + this.value[length - 1];
+
+        if (length > lastLength) {
+            realPassword += this.value.slice(lastLength);
+            lastLength = length;
+        } 
+        else if (length < lastLength) {
+            realPassword = realPassword.slice(0, length);
+            lastLength = length;
+        }
+
         let censored = "";
 
         for (let i = 0; i < length; i++) {
@@ -27,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.value !== censored) {
                 this.value = censored;
         }
-    }
+    })
 
     document.getElementById("signupbtn").onclick = function() {
         let email = document.getElementById("email").value;

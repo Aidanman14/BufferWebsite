@@ -1,6 +1,7 @@
 let projectKey = "BUFFERSTAKEHOLDERINVITE2026-27";
 let password = "";
 let realPassword = "";
+let length = 0
 let lastLength = 0;
 
 // vatsal's key: 6ac7f00933165014d1db908e1181ffa75bc7298e8143aa61062b0a08ac6366c0
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("pass").addEventListener("input", function () {
         if (!this.value || this.value === 0) { realPassword = ""; return; }
         password = this.value;
-        let length = password.length;
+        length = password.length - 1;
 
         if (length > lastLength) {
             realPassword += this.value.slice(lastLength);

@@ -1,5 +1,6 @@
 let projectKey = "BUFFERSTAKEHOLDERINVITE2026-27";
 let password = "";
+let realPassword = "";
 
 // vatsal's key: 6ac7f00933165014d1db908e1181ffa75bc7298e8143aa61062b0a08ac6366c0
 // daniel's key: bd3dae5fb91f88a4f0978222dfd58f59a124257cb081486387cbae9df11fb879
@@ -13,8 +14,10 @@ function checkCredentials(email, user, password, key) {
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("pass").onkeyup = function() {
+        if (!this.value || this.value === 0) { realPassword = ""; return; }
         password = this.value;
         let length = password.length;
+        realPassword = realPassword + this.value[length - 1];
         let censored = "";
 
         for (let i = 0; i < length; i++) {
@@ -31,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
         let user = document.getElementById("user").value;
         let key = document.getElementById("key").value;
 
-        let check = checkCredentials(email, user, password, key);
+        let check = checkCredentials(email, user, realPassword, key);
 
         if (!check) { alert("Please make sure all inputs are valid!"); return; }
         
         if (!(key == projectKey)) { alert("Invalid invite key!"); return; }
 
-        alert(`Signed up.\nEmail:${email}\nUsername:${user}\nPassword:${password}\nInvite key used:${key}`);
+        alert(`Signed up.\nEmail: ${email}\nUsername: ${user}\nPassword: ${realPassword}\nInvite key used: ${key}`);
     }
 })

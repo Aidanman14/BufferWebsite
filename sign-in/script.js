@@ -37,6 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (!check) { alert("Please make sure all inputs are valid!"); return; }
         
-        alert(`Signed in.\nEmail: ${useremail}\nUsername: ${user}\nPassword: ${realPassword}`);
+        alert(`Signed in.\nEmail/Username: ${useremail}\nPassword: ${realPassword}`);
     }
 })

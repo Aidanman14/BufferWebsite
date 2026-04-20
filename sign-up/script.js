@@ -1,6 +1,5 @@
 let projectKey = "BUFFERSTAKEHOLDERINVITE2026-27";
 let realPassword = "";
-let length = 0
 let lastLength = 0;
 
 // vatsal's key: 6ac7f00933165014d1db908e1181ffa75bc7298e8143aa61062b0a08ac6366c0
@@ -26,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         lastLength = length;
-
+        
+        let censored = "";
         for (let i = 0; i < length; i++) {
             censored = censored + "•";
         }

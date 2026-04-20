@@ -9,7 +9,7 @@ function checkCredentials(email, user, password, key) {
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("pass").onkeyup = function() {
         password = this.value;
-        let length = text.length;
+        let length = password.length;
         let censored = "";
 
         for (let i = 0; i < length; i++) {

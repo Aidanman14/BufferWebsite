@@ -2,14 +2,43 @@ let projectKey = "BUFFERSTAKEHOLDERINVITE2026-27";
 let realPassword = "";
 let lastLength = 0;
 
-// vatsal's key: 6ac7f00933165014d1db908e1181ffa75bc7298e8143aa61062b0a08ac6366c0
-// daniel's key: bd3dae5fb91f88a4f0978222dfd58f59a124257cb081486387cbae9df11fb879
-// mama's key: ccb711f092ac8ef1805b5045fab7e8a6189cb97ad04565e21b5fbcfc9e542e42
-// tahmasbi's key: 6e3da5b1aace18618f33ada2fbcf5304c7d773bb7906b17d5331286a198e2473
-
 function checkCredentials(email, user, password, key) {
     if ((!email || email.length === 0 || /^\s*$/.test(email)) || (!user || user.length === 0 || /^\s*$/.test(user)) || (!password || password.length === 0 || /^\s*$/.test(password)) || (!key || key.length === 0 || /^\s*$/.test(key))) { return false; }
     return true;
+}
+
+async function signup(email, user, password, key) {
+    const res = await fetch("https://api.buffer.website/sign-up", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: user,
+            email: email,
+            password: password,
+            key: key
+        })
+    });
+
+    const data = await res.json();
+
+    return data.message === "User created";
+}
+
+async function validateKey(key) {
+    const res = await fetch("https://api.buffer.website/invite-keys", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            key: key
+        })
+    });
+
+    const data = await res.json();
+    return data.message === "Valid invite key";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -45,8 +74,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (!check) { alert("Please make sure all inputs are valid!"); return; }
         
-        if (!(key == projectKey)) { alert("Invalid invite key!"); return; }
+        if (!validateKey(key)) { alert("Invalid invite key!"); return; }
 
-        alert(`Signed up.\nEmail: ${email}\nUsername: ${user}\nPassword: ${realPassword}\nInvite key used: ${key}`);
+        let success = signup(email, user, realPassword, key);
+        if (!success) { alert("An error occurred while signing up!"); return; }
+        else { alert("Signed up successfully!"); }
+
+        //alert(`Signed up.\nEmail: ${email}\nUsername: ${user}\nPassword: ${realPassword}\nInvite key used: ${key}`);
     }
 })

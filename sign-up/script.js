@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    document.getElementById("signupbtn").onclick = function() {
+    document.getElementById("signupbtn").onclick = async function() {
         let email = document.getElementById("email").value;
         let user = document.getElementById("user").value;
         let key = document.getElementById("key").value;
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (!check) { alert("Please make sure all inputs are valid!"); return; }
         
-        if (!validateKey(key)) { alert("Invalid invite key!"); return; }
+        if (! (await validateKey(key))) { alert("Invalid invite key!"); return; }
 
         let success = signup(email, user, realPassword, key);
         if (!success) { alert("An error occurred while signing up!"); return; }

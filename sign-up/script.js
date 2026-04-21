@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         if (! (await validateKey(key))) { alert("Invalid invite key!"); return; }
 
-        let success = signup(email, user, realPassword, key);
+        let success = await signup(email, user, realPassword, key);
         if (!success) { alert("An error occurred while signing up!"); return; }
         else { alert("Signed up successfully!"); }
 

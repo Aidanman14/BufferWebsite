@@ -10,3 +10,5 @@ fetch(randomPage)
   .then(html => {
     document.getElementById("content").innerHTML = html;
 });
+
+console.log("random page: " + randomPage);

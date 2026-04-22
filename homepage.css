@@ -1,11 +1,15 @@
-/* From Uiverse.io by jaykdoe */ 
-body {
+/* body {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   font-family: system-ui, -apple-system, sans-serif;
+} */
+ 
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
 .container {

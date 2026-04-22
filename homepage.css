@@ -1,4 +1,13 @@
 /* From Uiverse.io by jaykdoe */ 
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
 .container {
   height: 100%;
   width: 100%;
